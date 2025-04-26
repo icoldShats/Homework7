@@ -16,4 +16,22 @@ public class Main {
             System.out.println(e.getTitle());
         }
 
-}}
+        System.out.println("\nReverse order:");
+        EpisodeIterator reverse = new ReverseSeasonIterator(s1);
+        while (reverse.hasNext()) {
+            System.out.println(reverse.next().getTitle());
+        }
+
+        System.out.println("\nShuffle order:");
+        EpisodeIterator shuffle = new ShuffleSeasonIterator(s1, 42);
+        while (shuffle.hasNext()) {
+            System.out.println(shuffle.next().getTitle());
+        }
+
+        System.out.println("\nBinge watching:");
+        EpisodeIterator binge = new BingeIterator(series);
+        while (binge.hasNext()) {
+            System.out.println(binge.next().getTitle());
+        }
+    }
+}
