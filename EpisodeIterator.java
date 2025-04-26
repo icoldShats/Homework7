@@ -1,4 +1,4 @@
-public class EpisodeIterator {
+interface EpisodeIterator {
     boolean hasNext();
     Episode next();
 }
