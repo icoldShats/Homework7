@@ -19,7 +19,6 @@ public class Main {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Random rand = new Random();
 
-        // Периодически отправляем команды
         scheduler.scheduleAtFixedRate(() -> {
             Aircraft a = aircrafts.get(rand.nextInt(aircrafts.size()));
             if (rand.nextBoolean()) {
@@ -33,7 +32,6 @@ public class Main {
             }
         }, 0, 1, TimeUnit.SECONDS);
 
-        // Остановить симуляцию через 10 секунд
         scheduler.schedule(() -> {
             scheduler.shutdown();
             System.out.println("Simulation finished.");
