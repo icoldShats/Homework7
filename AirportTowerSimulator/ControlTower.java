@@ -14,7 +14,7 @@ public class ControlTower implements TowerMediator{
         if (msg.equals("day")) {
             System.out.println("landing " + sender.id);
             landingQueue.remove(sender);
-            landingQueue.addFirst(sender);  // Prioritize
+            landingQueue.add(sender);
             notifyAllHold();
             requestRunway(sender);
         } else if (msg.equals("landing req")) {
@@ -25,10 +25,10 @@ public class ControlTower implements TowerMediator{
     }
     private void notifyAllHold() {
         for (Aircraft a : landingQueue) {
-            a.receive("Hold position: emergency in progress.");
+            a.receive("emergency in progress");
         }
         for (Aircraft a : takeoffQueue) {
-            a.receive("Hold takeoff: emergency in progress.");
+            a.receive(" emergency in progress.");
         }
     }
     public boolean requestRunway(Aircraft a) {
