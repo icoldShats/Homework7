@@ -11,4 +11,9 @@ public class Main {
         series.addSeason(s1);
         series.addSeason(s2);
 
+        System.out.println("Normal order:");
+        for (Episode e : s1) {
+            System.out.println(e.getTitle());
+        }
+
 }}
