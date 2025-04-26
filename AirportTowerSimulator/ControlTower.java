@@ -8,7 +8,21 @@ public class ControlTower implements TowerMediator{
     private Queue<Aircraft> takeoffQueue = new LinkedList<>();
     private boolean runwayBusy = false;
 
+    public void broadcast(String msg, Aircraft sender) {
+        System.out.println("Tower received from " + sender.id + ": " + msg);
 
+        if (msg.equals("day")) {
+            System.out.println("landing " + sender.id);
+            landingQueue.remove(sender);
+            landingQueue.addFirst(sender);  // Prioritize
+            notifyAllHold();
+            requestRunway(sender);
+        } else if (msg.equals("landing req")) {
+            landingQueue.add(sender);
+        } else if (msg.equals("takeoff")) {
+            takeoffQueue.add(sender);
+        }
+    }
     public boolean requestRunway(Aircraft a) {
         if (!runwayBusy) {
             runwayBusy = true;
