@@ -7,4 +7,11 @@ class SeasonIterator implements EpisodeIterator, Iterator<Episode> {
     public SeasonIterator(Season season) {
         this.episodes = season.getEpisodes();
     }
+    public boolean hasNext() {
+        return index < episodes.size();
+    }
+
+    public Episode next() {
+        return episodes.get(index++);
+    }
 }
