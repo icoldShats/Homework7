@@ -23,6 +23,14 @@ public class ControlTower implements TowerMediator{
             takeoffQueue.add(sender);
         }
     }
+    private void notifyAllHold() {
+        for (Aircraft a : landingQueue) {
+            a.receive("Hold position: emergency in progress.");
+        }
+        for (Aircraft a : takeoffQueue) {
+            a.receive("Hold takeoff: emergency in progress.");
+        }
+    }
     public boolean requestRunway(Aircraft a) {
         if (!runwayBusy) {
             runwayBusy = true;
